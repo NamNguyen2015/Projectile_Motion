@@ -1,3 +1,5 @@
-streamlib
+streamlit
 matplotlib
 numpy
+pandas
+Openpyxl 
