@@ -1,4 +1,3 @@
 streamlib
-streamlib_book
 matplotlib
 numpy
