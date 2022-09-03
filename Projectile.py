@@ -102,49 +102,27 @@ def myPlots(var, color='red', name='abc'):
         print('Out of range')        
         
   
+ fig, ax = plt.subplots()
+   # line, = ax.plot(x, y, color=color)
+    #circle = plt.Circle((0.1, 0.1), radius=np.sqrt(0.01))
+    #ax.add_patch(circle)
+    #time_text=ax.text(0.65,0.95,'',fontsize=15,transform=ax.transAxes, bbox=dict(facecolor='white',edgecolor='black'))
+
+    #def update(time, x, y, line, circle):
+    #    line.set_data(x[:time], y[:time])
+    #    circle.center = x[time],y[time]
+    #    line.axes.axis([0, max(np.append(x,y)), 0, max(np.append(x,y))])
+        
+    #    return line,circle
    
-    ## Plotting 
-    #fig, ax = plt.subplots()
-# =============================================================================
-#     line, = ax.plot(x, y, color=color)
-#     circle = plt.Circle((0.1, 0.1), radius=np.sqrt(0.01))
-#     ax.add_patch(circle)
-#     time_text=ax.text(0.65,0.95,'',fontsize=15,transform=ax.transAxes, bbox=dict(facecolor='white',edgecolor='black'))
-# 
-#     def update(time, x, y, line, circle):
-#         line.set_data(x[:time], y[:time])
-#         circle.center = x[time],y[time]
-#         line.axes.axis([0, max(np.append(x,y)), 0, max(np.append(x,y))])
-#         
-#         return line,circle
-#    
-# =============================================================================
-  
-    plt.plot(x,y, color=color, label=name)   
-    plt.xlabel('Distance [m]')
-    plt.ylabel('Height [m]')
-    plt.legend()
-    return plt
-#    
-
-    #plt.figure(figsize=(8, 6), dpi=80)    
-    #fig, ax = plt.subplots(1,1,figsize=(8,6))
-# =============================================================================
-#     ax.plot(x,y, color=color, label=name)   
-#     ax.set_xlabel('Distance [m]')
-#     ax.set_ylabel('Height [m]')
-#     ax.legend()
-#    
-# =============================================================================
-
-    #ani = animation.FuncAnimation(fig,     update, len(x), fargs=[x, y, line, circle],
-    #                           interval=25, blit=True)
-  
-    #ani.save(path,writer='pillow', fps=100,dpi=200)
-
-    #plt.show()
-    #return fig
-    
+  #Plotting
+    ax.plot(x,y, color=color, label=name) 
+    ax.set_xlim(0, 1000)
+    ax.set_ylim(0,200)
+    ax.set_xlabel('Distance [m]')
+    ax.set_ylabel('Height [m]')
+    ax.legend()
+    return fig
 
 
  
