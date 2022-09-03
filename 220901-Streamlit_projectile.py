@@ -104,83 +104,49 @@ my_current_data=st.dataframe(var3)
 
 
 
-st.markdown("### Current Data:")
+st.markdown("### Download Current Data:")
 
-
-
-savedata = st.radio(
-     "Do you want to save this data under CSV or Excel file?",
-     options=["Yes", "No"],
-     help="Mark your option.",
-     )
-if savedata == "No":
-     st.warning('data will NOT be saved')
-
+buffer = io.BytesIO()    
+   # Create some Pandas dataframes from some data.   
+df1 = var3   
+# Create a Pandas Excel writer using XlsxWriter as the engine.
    
-if savedata=="Yes":
-   st.warning("Your data will be saved under Excel and CSV")  
-   ###Download data
-    
-   buffer = io.BytesIO()
-    
-   # Create some Pandas dataframes from some data.
-    
-   df1 = var3
-   f_name=st.text_input("Enter file_name:")
-   f_type=st.radio("Chose type", options=[".xlsx", ".csv"])
-   my_file=f_name+f_type 
-  # Create a Pandas Excel writer using XlsxWriter as the engine.
-   if f_type==".xlsx":
-        with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
-            # Write each dataframe to a different worksheet.
-            df1.to_excel(writer, sheet_name='Sheet1')
-   else:
-        @st.cache
-        def convert_df(df):
-             # IMPORTANT: Cache the conversion to prevent computation on every rerun
-             return df.to_csv().encode('utf-8')
-        
-        buffer = convert_df(df1)
-        
-    
+with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
+    # Write each dataframe to a different worksheet.
+    df1.to_excel(writer, sheet_name='Sheet1')
+   
 #writer.save()
 Download_btn=st.download_button(
     label="📥  DOWNLOAD DATA",
     data=buffer,
-    file_name=my_file,
+    file_name='data_projectile.xlsx',
+    mime='text/xlsx',
 )
 
 if Download_btn:
-    st.success("Success")
-   
+    st.success("Excel file is saved")
+    
+    
+ 
 
 ###Save and download figures    
-savefigure = st.radio(
-     "Do you want to save this figure?",
-     options=["Yes", "No"],
-     help="Mark your option.",
-     )
-if savefigure == "No":
-    st.warning('figure will NOT be saved')
-     
-if savefigure=="Yes":
-   ## To download image we can have two approaches: first, save to file and then download; second, save to memory and then download
 
-   #the second:
-       fig_name=st.text_input("Enter figure_name:")
-       fig_type=st.radio("chose fig_type:", options=[".png",".jpeg"])
-       fn=fig_name+fig_type
-       
-       fig1.savefig(fn)    
-       img = io.BytesIO()
-       plt.savefig(img)
-        
-       btn = st.download_button(
-          label="DOWNLOAD IMAGE",
-          data=img,
-          file_name=fn,
-         
-       )
+## To download image we can have two approaches: first, save to file and then download; second, save to memory and then download
+#the second:
+fn='figure_projectile.png'            
+fig1.savefig(fn)    
+img = io.BytesIO()
+plt.savefig(img)
+
+btn = st.download_button(
+   label="DOWNLOAD IMAGE",
+   data=img,
+   file_name=fn,
+  
+)
+
+
+
 
       
           
