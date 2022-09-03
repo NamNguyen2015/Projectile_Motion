@@ -16,7 +16,7 @@ import matplotlib.animation as animation
 from matplotlib.animation import PillowWriter
 import pandas as pd
 import os
-
+path= os.getcwd()
 
 
  #%%
@@ -102,7 +102,9 @@ def myPlots(var, color='red', name='abc'):
         print('Out of range')        
         
   
- fig, ax = plt.subplots()
+   
+    ## Plotting 
+    fig, ax = plt.subplots()
    # line, = ax.plot(x, y, color=color)
     #circle = plt.Circle((0.1, 0.1), radius=np.sqrt(0.01))
     #ax.add_patch(circle)
@@ -115,14 +117,31 @@ def myPlots(var, color='red', name='abc'):
         
     #    return line,circle
    
-  #Plotting
+  
     ax.plot(x,y, color=color, label=name) 
     ax.set_xlim(0, 1000)
     ax.set_ylim(0,200)
     ax.set_xlabel('Distance [m]')
     ax.set_ylabel('Height [m]')
     ax.legend()
+    
+
+    #ani = animation.FuncAnimation(fig,     update, len(x), fargs=[x, y, line, circle],
+    #                           interval=25, blit=True)
+  
+    #ani.save(path,writer='pillow', fps=100,dpi=200)
     return fig
+
+
+
+#%%
+v0=50
+theta_deg=20
+
+var3=dF(v0,theta_deg)
+fig1=myPlots(var=var3,color='red',   name=r'$v_0=$'+str(v0)+str(', ' ) +r'$\theta=$'+str(theta_deg)+r'$^0$')
+  
+fig1.savefig('projectile.png')#,writer='pillow', fps=100,dpi=200)  
 
 
  

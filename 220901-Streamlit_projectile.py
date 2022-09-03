@@ -78,11 +78,11 @@ c1, c2 = st.columns([3,1])
 dv0 = 1
 v0 = c1.slider("Initial Velocity [meters/second]", 
                         min_value=dv0, max_value=100*dv0, 
-                        value=50, step=dv0, help="Initial velocity for the projectile")
+                        value=100, step=dv0, help="Initial velocity for the projectile")
 dtheta = 1
 theta_deg = c2.slider("Initial Angle [degrees]", 
                         min_value=5, max_value=90, 
-                        value=60, step=5, help="Initial velocity for the projectile")    
+                        value=30, step=5, help="Initial velocity for the projectile")    
     
 
 import Projectile as pj
@@ -95,9 +95,10 @@ var3=pj.dF(v0,theta_deg)
 fig1=pj.myPlots(var=var3,color='red',   name=r'$v_0=$'+str(v0)+str(', ' ) +r'$\theta=$'+str(theta_deg)+r'$^0$')
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
+
+#st.write(fig1)
 st.pyplot(fig1)
-#f#igureStream.show()
-#
+
 st.markdown("### Current Data: "+ r'$v_0=$'+str(v0)+str(', ' ) +r'$\theta=$'+str(theta_deg)+r'$^0$')
 my_current_data=st.dataframe(var3)
 
@@ -106,6 +107,8 @@ my_current_data=st.dataframe(var3)
 
 st.markdown("### Download Current Data:")
 
+
+    
 buffer = io.BytesIO()    
    # Create some Pandas dataframes from some data.   
 df1 = var3   
@@ -145,10 +148,87 @@ btn = st.download_button(
   
 )
 
+         
 
-
-
-      
+# =============================================================================
+# savedata = st.radio(
+#      "Do you want to save this data under CSV or Excel file?",
+#      options=["Yes", "No"],
+#      help="Mark your option.",
+#      )
+# if savedata == "No":
+#      st.warning('data will NOT be saved')
+# 
+#    
+# if savedata=="Yes":
+#    st.warning("Your data will be saved under Excel and CSV")  
+#    ###Download data
+#     
+#    buffer = io.BytesIO()
+#     
+#    # Create some Pandas dataframes from some data.
+#     
+#    df1 = var3
+#    f_name=st.text_input("Enter file_name:")
+#    f_type=st.radio("Chose type", options=[".xlsx", ".csv"])
+#    my_file=f_name+f_type 
+#   # Create a Pandas Excel writer using XlsxWriter as the engine.
+#    if f_type==".xlsx":
+#         with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
+#             # Write each dataframe to a different worksheet.
+#             df1.to_excel(writer, sheet_name='Sheet1')
+#    else:
+#         @st.cache
+#         def convert_df(df):
+#              # IMPORTANT: Cache the conversion to prevent computation on every rerun
+#              return df.to_csv().encode('utf-8')
+#         
+#         buffer = convert_df(df1)
+#         
+#     
+# #writer.save()
+# Download_btn=st.download_button(
+#     label="📥  DOWNLOAD DATA",
+#     data=buffer,
+#     file_name=my_file,
+# )
+# 
+# if Download_btn:
+#     st.success("Success")
+# =============================================================================
+   
+###########################
+# =============================================================================
+# ###Save and download figures    
+# savefigure = st.radio(
+#      "Do you want to save this figure?",
+#      options=["Yes", "No"],
+#      help="Mark your option.",
+#      )
+# if savefigure == "No":
+#     st.warning('figure will NOT be saved')
+#      
+# if savefigure=="Yes":
+#    ## To download image we can have two approaches: first, save to file and then download; second, save to memory and then download
+# 
+#    #the second:
+#        fig_name=st.text_input("Enter figure_name:")
+#        fig_type=st.radio("chose fig_type:", options=[".png",".jpeg"])
+#        fn=fig_name+fig_type
+#        
+#        fig1.savefig(fn)    
+#        img = io.BytesIO()
+#        plt.savefig(img)
+#         
+#        btn = st.download_button(
+#           label="DOWNLOAD IMAGE",
+#           data=img,
+#           file_name=fn,
+#          
+#        )
+# 
+#       
+# =============================================================================
           
     
 
