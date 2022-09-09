@@ -33,7 +33,7 @@ Very simple and applicable problem.
 
 st.subheader("Introduction:")
 
-st.write("Considering no air resistance, what is the trajectory followed by a projectile thrown with initial velocity $v_0$ at an angle $\\theta$?")
+st.write("We considering no air resistance, what is the trajectory followed by a projectile thrown with initial velocity $v_0$ at an angle $\\theta$?")
 
 
 
