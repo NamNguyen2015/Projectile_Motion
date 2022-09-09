@@ -116,7 +116,7 @@ df1 = var3
    
 with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
     # Write each dataframe to a different worksheet.
-    df1.to_excel(writer, sheet_name='Sheet1')
+    df1.to_excel(writer, sheet_name='v'+str(v0)+'theta'+str(theta))
    
 #writer.save()
 Download_btn=st.download_button(
