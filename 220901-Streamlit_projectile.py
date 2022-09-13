@@ -27,6 +27,8 @@ Very simple and applicable problem.
 """
 )
 
+st.markdown("[Github source](https://github.com/NamNguyen2015/Projectile_Motion)")
+
 
 
 ## The question
